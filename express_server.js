@@ -2,23 +2,42 @@ const express = require('express');
 const app = express();
 const PORT = process.env.ENV_PORT || 8080;
 const bodyParser = require("body-parser");
+const cookieParser = require('cookie-parser');
 
-  let urlDatabase = {
-    "b2xVn2": "http://www.lighthouselabs.ca",
-    "9sm5xK": "http://www.google.com"
-  };
+const urlDatabase = {
+  "b2xVn2": "http://www.lighthouselabs.ca",
+  "9sm5xK": "http://www.google.com"
+};
+const data = [{}]
 //nody parser gets code from client side, express uses ejs, sets root
 app.use(bodyParser.urlencoded({
   extended: false
 }));
+app.use(cookieParser());
 
 app.set('view engine', 'ejs');
 
+app.get('/urls/login', (req, res) =>{
+  res.render("urls_login")
+});
+
+app.post('/urls/login', (req, res) =>{
+  const username = req.body.username;
+  res.cookie("username", username);
+  // const password = req.body.password;
+  // if(username === data.user.find(name){
+  res.redirect('/urls')
+  // })
+});
+
 app.get("/", (req, res) => {
-  res.redirect("/urls");
-})
+  res.redirect("/urls/login");
+});
 app.get("/urls", (req, res) => {
-  let templateVars = {urls: urlDatabase};
+  let templateVars = {
+    username: req.cookies["username"],
+    urls: urlDatabase
+  };
   res.render('urls_index', templateVars);
 });
 app.get("/urls/new", (req, res) => {

@@ -11,6 +11,9 @@
         <ul class="nav navbar-nav">
             <li><a href="/urls">Home</a></li>
             <li><a href="/urls/new">New URL</a></li>
+            <form action="/urls/logout" method="POST">
+            <p>Current User: <%=username%> </p> <input type="submit" value="Logout">
+            </form>
         </ul>
 
     </div>
