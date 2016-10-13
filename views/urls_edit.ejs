@@ -1,0 +1,16 @@
+<html lang="en">
+
+  <body class = "container">
+      <!-- Write EJS code here to display shortened links -->
+    <header>
+      <% include ../partials/header %>
+    </header>
+<h1>Edit <%=id%></h1>
+<form action="/urls/<%= id %>" method="post">
+  <p>
+    <input name="newLongURL" placeholder="<%= longURL%>" />
+  </p>
+  <p>
+    <button>Update URL</button>
+  </p>
+</form>

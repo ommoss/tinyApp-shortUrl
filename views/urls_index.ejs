@@ -1,0 +1,25 @@
+<html lang="en">
+
+  <body class = "container">
+      <!-- Write EJS code here to display shortened links -->
+    <header>
+      <% include ../partials/header %>
+    </header>
+
+    <main>
+      <div class="jumbotron">
+        <h1>Url dataBase</h1>
+        <ul>
+          <% for(index in urls) { %>
+            <li>ID: <%= index%> </li>
+            <p>URL: <%= urls[index] %></p>
+            <p><a href="/urls/<%=index%>/edit"> <button>Edit</button></a></p>
+            <form method="POST" action="/urls/<%=index%>/delete">
+              <input type="submit" value="delete"/>
+            </form>
+          <% }; %>
+        </ul>
+      </div>
+    </main>
+  </body>
+</html>
