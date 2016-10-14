@@ -1,0 +1,22 @@
+<html lang="en">
+
+  <body class = "container">
+      <!-- Write EJS code here to display shortened links -->
+<h1>Login</h1>
+<form action="/urls/login" method="post">
+  <p>
+    <input type= "username" name="username" placeholder="username" />
+    <input type= "password" name="password" placeholder="password" />
+  </p>
+  <p>
+    <button>Submit</button>
+  </p>
+</form>
+
+<h1>Don't have an account?</h1>
+<form action="/urls/guest" method="post">
+<h3>Try it out as guest!</h3>
+<input type="submit" value="click here!"/>
+</form>
+<h3>Or make your own account!</h3>
+<a href = "/urls/reg"><button>Register!</button></a>

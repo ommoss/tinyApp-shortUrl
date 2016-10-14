@@ -1,0 +1,28 @@
+<html lang="en">
+
+  <body class = "container">
+      <!-- Write EJS code here to display shortened links -->
+    <header>
+      <% include ../partials/header %>
+    </header>
+
+    <main>
+      <div class="jumbotron">
+        <h1>Your Urls</h1>
+        <ul>
+          <% urls.forEach( urs => { %>
+            <li>ID: <%=urs.id%> </li>
+            <p>URL: <%=urs.web%></p>
+            <p><a href="/urls/<%=urs.id%>/edit"> <button>Edit</button></a></p>
+            <form method="POST" action="/urls/<%=urs.id%>/delete">
+              <input type="submit" value="delete"/>
+            </form>
+            <form method="POST" action="/urls/<%=urs.id%>/publish">
+              <input type="submit" value="Publish"/>
+            </form>
+          <% }); %>
+        </ul>
+      </div>
+    </main>
+  </body>
+</html>

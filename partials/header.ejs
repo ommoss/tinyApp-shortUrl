@@ -9,11 +9,12 @@
         </div>
 
         <ul class="nav navbar-nav">
-            <li><a href="/urls">Home</a></li>
-            <li><a href="/urls/new">New URL</a></li>
             <form action="/urls/logout" method="POST">
-            <p>Current User: <%=username%> </p> <input type="submit" value="Logout">
+            <h2>Current User: <%=username%> </h2> <input type="submit" value="Logout">
             </form>
+            <li><a href="/urls">Home</a></li>
+            <li><a href="/urls/user">My Page</a></i>
+            <li><a href="/urls/new">New URL</a></li>
         </ul>
 
     </div>

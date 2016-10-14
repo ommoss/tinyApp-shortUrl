@@ -3,12 +3,14 @@
   <body class = "container">
       <!-- Write EJS code here to display shortened links -->
     <header>
-      <% include ../partials/header %>
+      <h1><%= username%></h1>
+      <form action="/urls/logout" method="POST">
+        <input type="submit" value="Logout">
+      </form>
     </header>
-
     <main>
       <div class="jumbotron">
-        <h1>Url DataBase</h1>
+        <h1>Guest Url DataBase</h1>
         <ul>
           <% for(index in urls) { %>
             <li>ID: <%= index%> </li>
