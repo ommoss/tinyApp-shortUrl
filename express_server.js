@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const PORT = process.env.ENV_PORT || 8080;
 const bodyParser = require("body-parser");
-const cookieParser = require('cookie-parser');
+const cookieSession = require('cookie-session');
 const tools = require('./tools')
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
@@ -16,7 +16,10 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 
-app.use(cookieParser());
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1', 'key2']
+}))
 
 app.set('view engine', 'ejs');
 
@@ -43,7 +46,7 @@ app.post('/urls/login', (req, res) =>{
     res.redirect('/urls/login');
   }else if(bcrypt.compareSync(tempP, foundName.password) == true){
      //if password matches encrypted password
-    res.cookie('username', loginUsername);
+    req.session.user_id = loginUsername;
     res.redirect('/urls');
   }else{
     //password is wrong but username exsist
@@ -89,7 +92,7 @@ app.post('/urls/reg', (req, res) =>{
 
 app.get('/urls/guest', (req, res) => {
   const templateVars = {
-    username: req.cookies["username"],
+    username: req.session.user_id,
     urls: urlDatabase
   };
   res.render('urls_guest', templateVars);
@@ -101,37 +104,37 @@ app.post('/urls/guest', (req, res) =>{5
 });
 //Creates the homepage
 app.get("/urls", (req, res) => {
-  if(req.cookies["username"] === undefined){
+  if(req.session.user_id === undefined){
     res.redirect('/urls/login');
-  }else if(req.cookies["username"] === "Guest"){
+  }else if(req.session.user_id === "Guest"){
     res.redirect('/urls/guest');
   };
   let templateVars = {
-    username: req.cookies["username"],
+    username: req.session.user_id,
     urls: urlDatabase
   };
   res.render('urls_index', templateVars);
 });
 //Renders the create a url page
 app.get("/urls/new", (req, res) => {
-  if(req.cookies["username"] === undefined){
+  if(req.session.user_id === undefined){
     res.redirect('/urls/login');
-  }else if(req.cookies["username"] === "Guest"){
+  }else if(req.session.user_id === "Guest"){
     res.redirect('/urls/guest');
   }
   templateVars = {
-    username: req.cookies["username"]
+    username: req.session.user_id
   };
   res.render('urls_new', templateVars);
 });
 
 app.get("/urls/user", (req, res) =>{
-  if(req.cookies["username"] === undefined){
+  if(req.session.user_id === undefined){
     res.redirect('/urls/login');
-  }else if(req.cookies["username"] === "Guest"){
+  }else if(req.session.user_id === "Guest"){
     res.redirect('/urls/guest');
   };
-  const username = req.cookies["username"];
+  const username = req.session.user_id;
   const foundName = data.find((element) => {
     return username === element.username;
   })
@@ -143,13 +146,13 @@ app.get("/urls/user", (req, res) =>{
 })
 
 app.get("/urls/:id", (req,res) => {
-  if(req.cookies["username"] === undefined){
+  if(req.session.user_id === undefined){
     res.redirect('/urls/login');
-  }else if(req.cookies["username"] === "Guest"){
+  }else if(req.session.user_id === "Guest"){
     res.redirect('/urls/guest');
   }
   let templateVars = {
-    username: req.cookies["username"],
+    username: req.session.user_id,
     shortURL: req.params.id,
     longURL: urlDatabase[req.params.id]
   };
@@ -169,22 +172,22 @@ app.get("/u/:id", (req, res) => {
 });
 
 app.get("/urls/:id/edit", (req, res) => {
-  if(req.cookies["username"] === undefined){
+  if(req.session.user_id === undefined){
     res.redirect('/urls/login');
-  }else if(req.cookies["username"] === "Guest"){
+  }else if(req.session.user_id === "Guest"){
     res.redirect('/urls/guest');
   };
   let shortURL = req.params.id;
   let currentURL = urlDatabase[shortURL]
   res.render('urls_edit', {
-    username: req.cookies["username"],
+    username: req.session.user_id,
     longURL: currentURL,
     id: shortURL
   });
 });
 
 app.post("/urls/user", (req, res) =>{
-  const username = req.cookies["username"];
+  const username = req.session.user_id;
   const foundName = data.find((element) => {
     return username === element.username;
   })
@@ -209,7 +212,7 @@ app.post('/urls/:id', (req, res) => {
 
 app.post('/urls/:id/delete', (req, res) => {
   let id = req.params.id;
-  const username = req.cookies["username"];
+  const username = req.session.user_id;
   const foundName = data.find((element) => {
     return  username === element.username;
   });
@@ -226,7 +229,7 @@ app.post('/urls/:id/delete', (req, res) => {
 
 app.post('/urls/:id/publish', (req, res) => {
   let id = req.params.id;
-  const username = req.cookies["username"];
+  const username = req.session.user_id;
   const foundName = data.find((element) => {
     return  username === element.username;
   });
