@@ -3,7 +3,8 @@ const app = express();
 const PORT = process.env.ENV_PORT || 8080;
 const bodyParser = require("body-parser");
 const cookieSession = require('cookie-session');
-const tools = require('./tools')
+const tools = require('./tools');
+const methodOverride = require('method-override');
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
 const urlDatabase = {
@@ -16,6 +17,7 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 
+app.use(express.static(__dirname + "/style"));
 app.use(cookieSession({
   name: 'session',
   keys: ['key1', 'key2']
@@ -54,7 +56,7 @@ app.post('/urls/login', (req, res) =>{
   }
 });
 
-app.post('/urls/logout',(req, res) => {
+app.get('/urls/logout',(req, res) => {
   res.clearCookie("username");
   res.redirect('/urls/login')
 })
@@ -210,7 +212,7 @@ app.post('/urls/:id', (req, res) => {
   };
 });
 
-app.post('/urls/:id/delete', (req, res) => {
+app.get('/urls/:id/delete', (req, res) => {
   let id = req.params.id;
   const username = req.session.user_id;
   const foundName = data.find((element) => {
@@ -227,7 +229,7 @@ app.post('/urls/:id/delete', (req, res) => {
   res.redirect(`/urls/user`);
 });
 
-app.post('/urls/:id/publish', (req, res) => {
+app.get('/urls/:id/publish', (req, res) => {
   let id = req.params.id;
   const username = req.session.user_id;
   const foundName = data.find((element) => {
@@ -239,7 +241,3 @@ app.post('/urls/:id/publish', (req, res) => {
   urlDatabase[id] = web.web;
   res.redirect(`/urls`)
 });
-
-
-
-

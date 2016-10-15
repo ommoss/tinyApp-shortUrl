@@ -1,11 +1,22 @@
 <html lang="en">
-  <head></head>
-  <body style="font-size:20px; padding:50px;">
+<% include ../partials/head %>
+
+  <head>
     <% include ../partials/header %>
+  </head>
+  <body>
+  <div style="padding:1px 200px;height:1000px;background-color:#8C7AAE">
     <form action="/urls/user" method="POST" style="margin:150px;">
-      <label for="longURL">Enter a URL:</label>
+      <h1 style = "
+      margin-left:8%;
+      display: block;
+      padding: 8px 8px;
+      width: 15%;
+      "
+      >Enter a Url!</h1>
       <input id="longURL" type="text" name="longURL" placeholder="http://" style="width: 300px">
       <input type="submit" value="Submit">
     </form>
+    </div>
   </body>
 </html>

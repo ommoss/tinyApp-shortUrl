@@ -1,16 +1,20 @@
 <html lang="en">
+<% include ../partials/head %>
 
   <body class = "container">
-      <!-- Write EJS code here to display shortened links -->
-    <header>
+    <header >
       <% include ../partials/header %>
     </header>
-<h1>Edit <%=id%></h1>
-<form action="/urls/<%= id %>" method="post">
-  <p>
-    <input name="newLongURL" placeholder="<%= longURL%>" />
-  </p>
-  <p>
-    <button>Update URL</button>
-  </p>
-</form>
+    <main>
+       <div style="padding:1px 200px;height:1000px;background-color:#8C7AAE">
+        <h1>Edit <%=id%></h1>
+        <form action="/urls/<%= id %>" method="post">
+          <p>
+            <input name="newLongURL" placeholder="<%= longURL%>" />
+          </p>
+            <button>Update URL</button>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

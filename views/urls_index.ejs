@@ -1,5 +1,5 @@
 <html lang="en">
-
+<% include ../partials/head %>
   <body class = "container">
       <!-- Write EJS code here to display shortened links -->
     <header>
@@ -7,14 +7,14 @@
     </header>
 
     <main>
-      <div class="jumbotron">
+      <div style="padding:1px 200px;height:1000px;background-color:#8C7AAE">
         <h1>Url DataBase</h1>
-        <ul>
+
           <% for(index in urls) { %>
-            <li>ID: <%= index%> </li>
+            <p>ID: <%= index%> </p>
             <p>URL: <%= urls[index] %></p>
           <% }; %>
-        </ul>
+
       </div>
     </main>
   </body>

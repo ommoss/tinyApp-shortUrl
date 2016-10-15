@@ -1,17 +1,16 @@
 <html lang="en">
-
+<% include ../partials/head %>
   <body class = "container">
-      <!-- Write EJS code here to display shortened links -->
     <header>
       <% include ../partials/header %>
     </header>
     <main>
-      <div class="jumbotron">
-      <h1><%=shortURL%></h1>
-      <p><%=longURL%><a href="/urls/<%=shortURL%>/edit"> <button>Edit</button></a></p>
-        <form method="POST" action="/urls/<%=index%>/delete">
-              <input type="submit" value="delete"/>
-        </form>
+      <div style="padding:1px 200px;height:1000px;background-color:#8C7AAE">
+        <h1><%=shortURL%></h1>
+        <p><%=longURL%><a href="/urls/<%=shortURL%>/edit"> <button>Edit</button></a></p>
+          <form method="POST" action="/urls/<%=index%>/delete">
+                <input type="submit" value="delete"/>
+          </form>
       </div>
     </main>
     <!-- Write EJS code here to display shortened links -->
