@@ -5,16 +5,13 @@
     <header>
       <% include ../partials/header %>
     </header>
-
     <main>
       <div style="padding:1px 200px;height:1000px;background-color:#8C7AAE">
         <h1>Url DataBase</h1>
-
           <% for(index in urls) { %>
-            <p>ID: <%= index%> </p>
-            <p>URL: <%= urls[index] %></p>
+            <p style= "font-size: 32px">ID: <%= index%> </p>
+            <p style= "font-size: 24px">URL: <%= urls[index] %></p>
           <% }; %>
-
       </div>
     </main>
   </body>

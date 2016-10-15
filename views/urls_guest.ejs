@@ -1,22 +1,22 @@
 <html lang="en">
-
+<% include ../partials/head %>
   <body class = "container">
       <!-- Write EJS code here to display shortened links -->
     <header>
-      <h1><%= username%></h1>
-      <form action="/urls/logout" method="POST">
-        <input type="submit" value="Logout">
-      </form>
+    <ul>
+      <h1 style="margin-left: 1%"><%=username%> </h1>
+      <li style="float:right"><a class = "active" href="/urls/logout">Logout</a></li>
+    </ul>
     </header>
     <main>
-      <div class="jumbotron">
-        <h1>Guest Url DataBase</h1>
-        <ul>
+    <div style="padding:1px 200px;height:1000px;background-color:#8C7AAE">
+        <h1>Url DataBase</h1>
+
           <% for(index in urls) { %>
-            <li>ID: <%= index%> </li>
-            <p>URL: <%= urls[index] %></p>
+            <p style= "font-size: 32px">ID: <%= index%>
+            URL: <%= urls[index] %></p>
           <% }; %>
-        </ul>
+
       </div>
     </main>
   </body>

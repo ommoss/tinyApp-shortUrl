@@ -101,7 +101,7 @@ app.get('/urls/guest', (req, res) => {
 });
 
 app.post('/urls/guest', (req, res) =>{5
-  res.cookie("username","Guest");
+  req.session.user_id = "Guest";
   res.redirect("/urls/guest");
 });
 //Creates the homepage
