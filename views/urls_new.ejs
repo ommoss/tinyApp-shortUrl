@@ -1,17 +1,24 @@
 <html lang="en">
 <% include ../partials/head %>
+<style>
+body{
+  background-image: url("http://localhost:8080/css/images3.jpg");
+  background-repeat: no-repeat;
 
+}
+</style>
   <head>
     <% include ../partials/header %>
   </head>
   <body>
-  <div style="padding:1px 200px;height:1000px;background-color:#8C7AAE">
-    <form action="/urls/user" method="POST" style="margin:150px;">
+  <div style="padding:1px 50px;height:1000px;">
+    <form action="/urls/user" method="POST" style="margin-top:100px; margin-left:20px;">
       <h1 style = "
-      margin-left:8%;
+      margin-left:5%;
       display: block;
       padding: 8px 8px;
-      width: 15%;
+      width: 13%;
+      color:white;
       "
       >Enter a Url!</h1>
       <input id="longURL" type="text" name="longURL" placeholder="http://" style="width: 300px">

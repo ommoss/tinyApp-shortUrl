@@ -1,5 +1,12 @@
 <html lang="en">
 <% include ../partials/head %>
+<style>
+body{
+  background-image: url("http://localhost:8080/css/images4.jpg");
+  background-repeat: no-repeat;
+
+}
+</style>
   <body class = "container">
       <!-- Write EJS code here to display shortened links -->
     <header>
@@ -9,11 +16,11 @@
     </ul>
     </header>
     <main>
-    <div style="padding:1px 200px;height:1000px;background-color:#8C7AAE">
-        <h1>Url DataBase</h1>
+    <div style="padding:1px 200px;height:1000px;">
+        <h1 style="color: white;font-size: 5em;">Url DataBase</h1>
 
           <% for(index in urls) { %>
-            <p style= "font-size: 32px">ID: <%= index%>
+            <p style= "color:white;font-size: 2em">ID: <%= index%>
             URL: <%= urls[index] %></p>
           <% }; %>
 

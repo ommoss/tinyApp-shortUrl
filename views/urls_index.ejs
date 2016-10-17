@@ -1,16 +1,23 @@
 <html lang="en">
 <% include ../partials/head %>
+<style>
+body{
+  background-image: url("http://localhost:8080/css/images.jpg");
+  background-repeat: no-repeat;
+
+}
+</style>
   <body class = "container">
       <!-- Write EJS code here to display shortened links -->
     <header>
       <% include ../partials/header %>
     </header>
     <main>
-      <div style="padding:1px 200px;height:1000px;background-color:#8C7AAE">
-        <h1>Url DataBase</h1>
+      <div style="padding:20px 200px;height:1000px">
+        <h1 style="color: white; font-size:5em; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">Url DataBase</h1>
           <% for(index in urls) { %>
-            <p style= "font-size: 32px">ID: <%= index%> </p>
-            <p style= "font-size: 24px">URL: <%= urls[index] %></p>
+            <p style= "font-size: 2em; color: white">ID: <%= index%> </p>
+            <p style= "font-size: 2em;font-weight: 10px;color: white">URL: <%= urls[index] %></p>
           <% }; %>
       </div>
     </main>

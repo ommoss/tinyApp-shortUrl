@@ -1,16 +1,22 @@
 <html lang="en">
 <% include ../partials/head %>
+<style>
+body{
+  background-image: url("http://localhost:8080/css/images5.jpg");
+  background-repeat: no-repeat;
 
+}
+</style>
   <body class = "container">
     <header >
       <% include ../partials/header %>
     </header>
     <main>
-       <div style="padding:1px 200px;height:1000px;background-color:#8C7AAE">
+       <div style="padding:1px 200px;height:1000px;">
         <h1>Edit <%=id%></h1>
         <form action="/urls/<%= id %>" method="post">
           <p>
-            <input name="newLongURL" placeholder="<%= longURL%>" />
+            <input name="newLongURL" placeholder="<%= longURL%>" style="width: 300px;" />
           </p>
             <button>Update URL</button>
         </form>
